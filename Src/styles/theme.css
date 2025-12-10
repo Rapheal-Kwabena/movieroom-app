@@ -1,0 +1,50 @@
+/* src/styles/theme.css */
+
+/* Define the Brand Style Kit variables */
+:root {
+    /* Colors */
+    --color-black-night: #0D0D0D;
+    --color-slate-grey: #1B1B1B;
+    --color-golden-accent: #E6B10E;
+    --color-ash-silver: #C4C4C4;
+    --color-pop-red: #ED2B2A;
+
+    /* Typography */
+    /* Assuming you've linked these fonts in index.html or public/index.html */
+    --font-header: 'Montserrat', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --font-light: 'Poppins', sans-serif;
+
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 4rem;
+}
+
+/* Global Reset and Base Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--color-black-night);
+    color: var(--color-ash-silver);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+h1, h2, h3 {
+    font-family: var(--font-header);
+    color: white; /* Bright headers for cinematic contrast */
+}
+
+/* Utility to center content */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-sm);
+}

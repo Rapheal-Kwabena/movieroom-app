@@ -1,0 +1,125 @@
+/* src/pages/NotFoundPage/NotFoundPage.css */
+
+.not-found-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--color-black-night) 0%, var(--color-slate-grey) 100%);
+    padding: var(--spacing-md);
+}
+
+.not-found-content {
+    text-align: center;
+    max-width: 600px;
+}
+
+.error-code {
+    font-size: 8rem;
+    font-weight: bold;
+    color: var(--color-golden-accent);
+    line-height: 1;
+    margin-bottom: var(--spacing-sm);
+    font-family: var(--font-header);
+    text-shadow: 0 0 30px rgba(230, 177, 14, 0.3);
+}
+
+.not-found-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.error-message {
+    color: var(--color-ash-silver);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: var(--spacing-md);
+}
+
+.not-found-illustration {
+    font-size: 4rem;
+    margin: var(--spacing-md) 0;
+    opacity: 0.7;
+}
+
+.not-found-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+    justify-content: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.not-found-actions .btn {
+    min-width: 150px;
+}
+
+.quick-links {
+    background-color: var(--color-slate-grey);
+    padding: var(--spacing-md);
+    border-radius: 8px;
+    margin-top: var(--spacing-lg);
+}
+
+.quick-links h3 {
+    font-size: 1.2rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.quick-links ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    justify-content: center;
+}
+
+.quick-links li {
+    display: inline-block;
+}
+
+.quick-links a {
+    color: var(--color-ash-silver);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    background-color: var(--color-black-night);
+    transition: all 0.2s;
+}
+
+.quick-links a:hover {
+    color: var(--color-golden-accent);
+    background-color: rgba(230, 177, 14, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 576px) {
+    .error-code {
+        font-size: 5rem;
+    }
+    
+    .not-found-content h1 {
+        font-size: 1.8rem;
+    }
+    
+    .error-message {
+        font-size: 1rem;
+    }
+    
+    .not-found-actions {
+        flex-direction: column;
+    }
+    
+    .not-found-actions .btn {
+        width: 100%;
+    }
+    
+    .quick-links ul {
+        flex-direction: column;
+    }
+    
+    .quick-links a {
+        display: block;
+        width: 100%;
+    }
+}

@@ -1,0 +1,258 @@
+/* src/pages/SignInPage/SignInPage.css */
+
+.signin-page-content {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-md);
+    background: linear-gradient(135deg, var(--color-black-night) 0%, var(--color-slate-grey) 100%);
+}
+
+.signin-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-lg);
+    max-width: 1200px;
+    width: 100%;
+}
+
+/* Sign In Card */
+.signin-card {
+    background-color: var(--color-slate-grey);
+    padding: var(--spacing-lg);
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.signin-header {
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+}
+
+.signin-header h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.signin-subtitle {
+    color: var(--color-ash-silver);
+    font-size: 0.95rem;
+}
+
+/* Error Banner */
+.error-banner {
+    background-color: rgba(237, 43, 42, 0.1);
+    border: 1px solid var(--color-pop-red);
+    color: var(--color-pop-red);
+    padding: 0.75rem;
+    border-radius: 4px;
+    margin-bottom: var(--spacing-sm);
+    text-align: center;
+}
+
+/* Sign In Form */
+.signin-form {
+    margin-bottom: var(--spacing-md);
+}
+
+.signin-form .btn {
+    width: 100%;
+    margin-top: var(--spacing-sm);
+}
+
+.forgot-password {
+    text-align: right;
+    margin: 0.5rem 0 var(--spacing-sm) 0;
+}
+
+.forgot-password a {
+    color: var(--color-golden-accent);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+}
+
+.forgot-password a:hover {
+    color: #FFD700;
+    text-decoration: underline;
+}
+
+/* Divider */
+.signin-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: var(--spacing-md) 0;
+}
+
+.signin-divider::before,
+.signin-divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid rgba(196, 196, 196, 0.2);
+}
+
+.signin-divider span {
+    padding: 0 1rem;
+    color: var(--color-ash-silver);
+    font-size: 0.85rem;
+}
+
+/* Social Sign In */
+.social-signin {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    border: 1px solid rgba(196, 196, 196, 0.3);
+    background-color: transparent;
+    color: var(--color-ash-silver);
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: var(--font-body);
+    transition: all 0.2s;
+}
+
+.social-btn:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: var(--color-golden-accent);
+    color: white;
+}
+
+.social-icon {
+    font-size: 1.2rem;
+}
+
+/* Sign In Footer */
+.signin-footer {
+    text-align: center;
+    padding-top: var(--spacing-sm);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.signin-footer p {
+    color: var(--color-ash-silver);
+}
+
+.toggle-link {
+    background: none;
+    border: none;
+    color: var(--color-golden-accent);
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-weight: bold;
+    transition: color 0.2s;
+}
+
+.toggle-link:hover {
+    color: #FFD700;
+    text-decoration: underline;
+}
+
+/* Guest Access */
+.guest-access {
+    text-align: center;
+    margin-top: var(--spacing-sm);
+}
+
+.guest-access p {
+    color: rgba(196, 196, 196, 0.6);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.guest-link {
+    color: var(--color-ash-silver);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+}
+
+.guest-link:hover {
+    color: var(--color-golden-accent);
+}
+
+/* Illustration Side */
+.signin-illustration {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(230, 177, 14, 0.1) 0%, rgba(230, 177, 14, 0.05) 100%);
+    border-radius: 12px;
+    padding: var(--spacing-lg);
+}
+
+.illustration-content {
+    text-align: center;
+}
+
+.illustration-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-md);
+    color: var(--color-golden-accent);
+}
+
+.illustration-content ul {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+}
+
+.illustration-content li {
+    padding: 0.75rem 0;
+    font-size: 1.1rem;
+    color: var(--color-ash-silver);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.illustration-content li:last-child {
+    border-bottom: none;
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+    .signin-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .signin-illustration {
+        order: -1;
+        padding: var(--spacing-md);
+    }
+    
+    .illustration-content h2 {
+        font-size: 1.8rem;
+    }
+    
+    .illustration-content li {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .signin-card {
+        padding: var(--spacing-md);
+    }
+    
+    .signin-header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .social-signin {
+        gap: 0.5rem;
+    }
+    
+    .social-btn {
+        padding: 0.6rem;
+        font-size: 0.9rem;
+    }
+}

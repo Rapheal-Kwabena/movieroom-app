@@ -1,0 +1,286 @@
+/* src/pages/ProfilePage/ProfilePage.css */
+
+.profile-page-content {
+    padding-top: var(--spacing-md);
+    padding-bottom: var(--spacing-lg);
+}
+
+/* Profile Header */
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: var(--color-slate-grey);
+    padding: var(--spacing-md);
+    border-radius: 8px;
+    margin-bottom: var(--spacing-md);
+}
+
+.profile-avatar-section {
+    display: flex;
+    gap: var(--spacing-md);
+    align-items: center;
+}
+
+.profile-avatar-large {
+    font-size: 5rem;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-black-night);
+    border-radius: 50%;
+    border: 3px solid var(--color-golden-accent);
+}
+
+.profile-info h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.user-bio {
+    color: var(--color-ash-silver);
+    margin: 0.5rem 0;
+    font-size: 1rem;
+}
+
+.joined-date {
+    color: rgba(196, 196, 196, 0.6);
+    font-size: 0.9rem;
+    font-family: var(--font-light);
+}
+
+/* Edit Inputs */
+.edit-input,
+.edit-textarea {
+    width: 100%;
+    padding: 0.5rem;
+    background-color: var(--color-black-night);
+    border: 1px solid var(--color-golden-accent);
+    color: white;
+    border-radius: 4px;
+    font-family: var(--font-body);
+    margin: 0.25rem 0;
+}
+
+.edit-textarea {
+    resize: vertical;
+    min-height: 60px;
+}
+
+/* Profile Content Grid */
+.profile-content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.profile-section {
+    background-color: var(--color-slate-grey);
+    padding: var(--spacing-md);
+    border-radius: 8px;
+}
+
+.profile-section h2 {
+    font-size: 1.3rem;
+    margin-bottom: var(--spacing-sm);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 0.5rem;
+}
+
+/* Watch History */
+.history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.history-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+    background-color: var(--color-black-night);
+    border-radius: 4px;
+    transition: transform 0.2s;
+}
+
+.history-item:hover {
+    transform: translateX(5px);
+}
+
+.history-info h3 {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.room-name {
+    font-size: 0.85rem;
+    color: var(--color-ash-silver);
+}
+
+.history-date {
+    font-size: 0.8rem;
+    color: rgba(196, 196, 196, 0.6);
+}
+
+/* Favorite Rooms */
+.favorites-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.favorite-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+    background-color: var(--color-black-night);
+    border-radius: 4px;
+}
+
+.favorite-item h3 {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.genre-tag {
+    font-size: 0.85rem;
+    color: var(--color-golden-accent);
+}
+
+.members-count {
+    font-size: 0.9rem;
+    color: var(--color-ash-silver);
+}
+
+/* Badges Grid */
+.badges-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: var(--spacing-sm);
+}
+
+.badge-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--spacing-sm);
+    background-color: var(--color-black-night);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.badge-item:hover {
+    background-color: rgba(230, 177, 14, 0.1);
+    transform: translateY(-2px);
+}
+
+.badge-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.badge-name {
+    font-size: 0.85rem;
+    text-align: center;
+    color: var(--color-ash-silver);
+}
+
+/* Friends List */
+.friends-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+}
+
+.friend-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--spacing-sm);
+    background-color: var(--color-black-night);
+    border-radius: 4px;
+    min-width: 100px;
+    transition: all 0.2s;
+}
+
+.friend-item:hover {
+    transform: scale(1.05);
+}
+
+.friend-avatar {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.friend-name {
+    font-size: 0.85rem;
+    color: var(--color-ash-silver);
+    text-align: center;
+}
+
+/* Profile Actions */
+.profile-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+    justify-content: center;
+    margin-top: var(--spacing-md);
+}
+
+.settings-btn,
+.logout-btn {
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-weight: bold;
+    transition: all 0.2s;
+}
+
+.settings-btn {
+    background-color: var(--color-slate-grey);
+    color: var(--color-ash-silver);
+}
+
+.settings-btn:hover {
+    background-color: var(--color-golden-accent);
+    color: var(--color-black-night);
+}
+
+.logout-btn {
+    background-color: transparent;
+    color: var(--color-pop-red);
+    border: 1px solid var(--color-pop-red);
+}
+
+.logout-btn:hover {
+    background-color: var(--color-pop-red);
+    color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .profile-header {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+    
+    .profile-avatar-section {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .profile-content-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .badges-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
