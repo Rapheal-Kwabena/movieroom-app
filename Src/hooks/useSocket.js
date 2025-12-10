@@ -75,6 +75,7 @@ export const useRoomSocket = (roomId, username, password = null) => {
     const [users, setUsers] = useState([]);
     const [error, setError] = useState(null);
     const [isJoined, setIsJoined] = useState(false);
+    const [isHost, setIsHost] = useState(false);
 
     useEffect(() => {
         if (!socket || !isConnected || !roomId) return;
@@ -89,8 +90,13 @@ export const useRoomSocket = (roomId, username, password = null) => {
             setMessages(state.messages || []);
             setReactions(state.reactions || []);
             setUsers(state.users || []);
+            setIsHost(state.isHost || false);
             setIsJoined(true);
             setError(null);
+            
+            if (state.isHost) {
+                console.log('👑 You are the host of this room');
+            }
         });
 
         // Listen for errors
@@ -124,6 +130,22 @@ export const useRoomSocket = (roomId, username, password = null) => {
             setUsers(prev => prev.filter(u => u.id !== userId));
         });
 
+        // Listen for host changed
+        socket.on('hostChanged', ({ newHostId, newHostUsername }) => {
+            console.log(`👑 ${newHostUsername} is now the host`);
+            setIsHost(socket.id === newHostId);
+            setUsers(prev => prev.map(u => ({
+                ...u,
+                isHost: u.id === newHostId
+            })));
+        });
+
+        // Listen for sync errors
+        socket.on('syncError', ({ message }) => {
+            console.warn('⚠️ Sync error:', message);
+            // Don't set global error, just log it
+        });
+
         // Cleanup listeners
         return () => {
             socket.off('roomState');
@@ -132,6 +154,8 @@ export const useRoomSocket = (roomId, username, password = null) => {
             socket.off('newReaction');
             socket.off('userJoined');
             socket.off('userLeft');
+            socket.off('hostChanged');
+            socket.off('syncError');
         };
     }, [socket, isConnected, roomId, username, password]);
 
@@ -177,6 +201,7 @@ export const useRoomSocket = (roomId, username, password = null) => {
         socket,
         isConnected,
         isJoined,
+        isHost,
         error: error || connectionError,
         roomState,
         messages,

@@ -60,10 +60,11 @@ app.post('/api/rooms/create', (req, res) => {
         genreTag: genreTag || 'General',
         posterImage: posterImage || null,
         users: new Set(),
+        host: null, // Track room host (first user to join)
         messages: [],
         reactions: [],
         syncTime: 0,
-        isPlaying: false,
+        isPlaying: true, // Auto-play when host joins
         createdAt: new Date().toISOString()
     };
     
@@ -149,7 +150,14 @@ io.on('connection', (socket) => {
         socket.join(roomId);
         room.users.add(socket.id);
         
+        // Set host if this is the first user
+        if (!room.host) {
+            room.host = socket.id;
+            console.log(`👑 ${users[socket.id].username} is now the host of room ${roomId}`);
+        }
+        
         const user = users[socket.id];
+        const isHost = room.host === socket.id;
         
         // Notify others that user joined
         socket.to(roomId).emit('userJoined', { 
@@ -168,9 +176,12 @@ io.on('connection', (socket) => {
             syncTime: room.syncTime,
             isPlaying: room.isPlaying,
             userCount: getRoomUsers(roomId),
+            isHost: isHost,
+            hostId: room.host,
             users: Array.from(room.users).map(id => ({
                 id,
-                username: users[id]?.username || 'Unknown'
+                username: users[id]?.username || 'Unknown',
+                isHost: id === room.host
             }))
         });
         
@@ -234,8 +245,18 @@ io.on('connection', (socket) => {
     
     socket.on('syncMovieState', ({ roomId, currentTime, isPlaying }) => {
         const room = rooms[roomId];
+        const user = users[socket.id];
         
-        if (!room) return;
+        if (!room || !user) return;
+
+        // CRITICAL FIX: Only allow host to sync
+        if (room.host !== socket.id) {
+            console.log(`⚠️  [${room.name}] ${user.username} tried to sync but is not host`);
+            socket.emit('syncError', {
+                message: 'Only the host can control playback'
+            });
+            return;
+        }
 
         // Update server state
         room.syncTime = currentTime;
@@ -245,11 +266,11 @@ io.on('connection', (socket) => {
         socket.to(roomId).emit('movieStateUpdated', {
             currentTime,
             isPlaying,
-            syncedBy: users[socket.id]?.username || 'Unknown',
+            syncedBy: user.username,
             serverTime: Date.now()
         });
         
-        console.log(`⏯️  [${room.name}] Sync: ${isPlaying ? 'Playing' : 'Paused'} at ${currentTime}s`);
+        console.log(`⏯️  [${room.name}] Host ${user.username} synced: ${isPlaying ? 'Playing' : 'Paused'} at ${currentTime}s`);
     });
 
     // Request sync (when user joins or reconnects)
@@ -324,8 +345,24 @@ function handleUserLeave(socket, roomId) {
     
     if (!room || !user) return;
 
+    const wasHost = room.host === socket.id;
     room.users.delete(socket.id);
     socket.leave(roomId);
+    
+    // Transfer host to next user if current host leaves
+    if (wasHost && room.users.size > 0) {
+        const newHostId = Array.from(room.users)[0];
+        room.host = newHostId;
+        const newHost = users[newHostId];
+        
+        console.log(`👑 ${newHost?.username || 'Unknown'} is now the host of room ${roomId}`);
+        
+        // Notify all users about new host
+        io.to(roomId).emit('hostChanged', {
+            newHostId: newHostId,
+            newHostUsername: newHost?.username || 'Unknown'
+        });
+    }
     
     // Notify others
     socket.to(roomId).emit('userLeft', {

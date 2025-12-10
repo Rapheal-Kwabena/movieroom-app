@@ -1,5 +1,46 @@
 /* src/components/VideoPlayer/VideoPlayer.css */
 
+/* Prevent guest interaction with video player */
+.video-player-container.guest-mode .player-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 5;
+    cursor: not-allowed;
+}
+
+.video-player-container.guest-mode .player-wrapper {
+    pointer-events: none;
+}
+
+.video-player-container.guest-mode .player-controls {
+    pointer-events: auto;
+}
+
+/* Host indicator styling */
+.host-indicator {
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    color: #000;
+    font-weight: bold;
+    padding: 6px 12px;
+    border-radius: 20px;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.05);
+    }
+}
+
 .video-player-container {
     width: 100%;
     height: 100%;

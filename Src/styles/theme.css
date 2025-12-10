@@ -1,5 +1,10 @@
 /* src/styles/theme.css */
 
+/* Tailwind CSS Directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* Define the Brand Style Kit variables */
 :root {
     /* Colors */
